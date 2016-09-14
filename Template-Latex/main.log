@@ -1,0 +1,352 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.24)  2 MAY 2016 13:41
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**main.tex
+(./main.tex
+LaTeX2e <2015/01/01>
+Babel <3.9l> and hyphenation patterns for 79 languages loaded.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 94.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count87
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/appendix/appendix.sty
+Package: appendix 2009/09/02 v1.2b extra appendix facilities
+\c@@pps=\count88
+\c@@ppsavesec=\count89
+\c@@ppsaveapp=\count90
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/cite/cite.sty
+LaTeX Info: Redefining \cite on input line 302.
+LaTeX Info: Redefining \nocite on input line 332.
+Package: cite 2015/02/27  v 5.5
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count91
+\lst@gtempboxa=\box26
+\lst@token=\toks15
+\lst@length=\count92
+\lst@currlwidth=\dimen105
+\lst@column=\count93
+\lst@pos=\count94
+\lst@lostspace=\dimen106
+\lst@width=\dimen107
+\lst@newlines=\count95
+\lst@lineno=\count96
+\lst@maxwidth=\dimen108
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2014/09/06 1.5e (Carsten Heinz)
+\c@lstnumber=\count97
+\lst@skipnumbers=\count98
+\lst@framebox=\box27
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2014/09/06 1.5e listings configuration
+))
+Package: listings 2014/09/06 1.5e (Carsten Heinz)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2011/09/28 v3.5.2 Customized lists
+\labelindent=\skip43
+\enit@outerparindent=\dimen109
+\enit@toks=\toks16
+\enit@inbox=\box28
+\enitdp@description=\count99
+)
+(./main.aux)
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+ (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count100
+\scratchdimen=\dimen110
+\scratchbox=\box29
+\nofMPsegments=\count101
+\nofMParguments=\count102
+\everyMPshowfont=\toks17
+\MPscratchCnt=\count103
+\MPscratchDim=\dimen111
+\MPnumerator=\count104
+\makeMPintoPDFobject=\count105
+\everyMPtoPDFconversion=\toks18
+) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+\c@lstlisting=\count106
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 46.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 46.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 46.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 63.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 63.
+
+<images/qut-logo-better.png, id=1, 1020.81375pt x 1027.84pt>
+File: images/qut-logo-better.png Graphic file (type png)
+
+<use images/qut-logo-better.png>
+Package pdftex.def Info: images/qut-logo-better.png used on input line 69.
+(pdftex.def)             Requested size: 102.08736pt x 102.79001pt.
+ [1
+
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./image
+s/qut-logo-better.png>] (./main.toc [1])
+\tf@toc=\write3
+\openout3 = `main.toc'.
+
+
+[2] [3] [4] [5] [6]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 167.
+
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 167.
+ [7]
+
+LaTeX Warning: Citation `d' on page 8 undefined on input line 191.
+
+(./main.bbl [8]) [9]
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 208.
+
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 208.
+ [10]
+(/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2014/09/06 1.5e listings language file
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2014/09/06 1.5e listings language file
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2014/09/06 1.5e (Carsten Heinz)
+) [11]
+[12]
+Overfull \hbox (54.14923pt too wide) in paragraph at lines 275--276
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[13] [14] [15]
+Underfull \hbox (badness 10000) in paragraph at lines 331--332
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--335
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 336--337
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 338--339
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 342--343
+
+ []
+
+[16] <images/predicted-count.png, id=71, 1551.7975pt x 1098.1025pt>
+File: images/predicted-count.png Graphic file (type png)
+
+<use images/predicted-count.png>
+Package pdftex.def Info: images/predicted-count.png used on input line 350.
+(pdftex.def)             Requested size: 387.94843pt x 274.52495pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 350--351
+
+ []
+
+[17 <./images/predicted-count.png>]
+<images/AverageBasicOperations.png, id=76, 1551.7975pt x 1098.1025pt>
+File: images/AverageBasicOperations.png Graphic file (type png)
+
+<use images/AverageBasicOperations.png>
+Package pdftex.def Info: images/AverageBasicOperations.png used on input line 3
+59.
+(pdftex.def)             Requested size: 310.354pt x 219.61661pt.
+ [18 <./images/AverageBasicOperations.png>] <images/average-time.png, id=82, 25
+11.3825pt x 1341.01pt>
+File: images/average-time.png Graphic file (type png)
+
+<use images/average-time.png>
+Package pdftex.def Info: images/average-time.png used on input line 368.
+(pdftex.def)             Requested size: 376.69113pt x 201.14282pt.
+ [19 <./images/average-time.png>]
+<images/average-time-vs-size-of-array.png, id=87, 2511.3825pt x 1341.01pt>
+File: images/average-time-vs-size-of-array.png Graphic file (type png)
+
+<use images/average-time-vs-size-of-array.png>
+Package pdftex.def Info: images/average-time-vs-size-of-array.png used on input
+ line 377.
+(pdftex.def)             Requested size: 376.69113pt x 201.14282pt.
+ [20 <./images/average-time-vs-size-of-array.png>]
+Overfull \hbox (27.18387pt too wide) in paragraph at lines 384--384
+[]\OT1/cmr/bx/n/17.28 Average Ba-sic Op-er-a-tions Vs Pre-dicted Count 
+ []
+
+
+<images/AverageBasicOperationsVAssumedCount.png, id=92, 1551.7975pt x 1098.1025
+pt>
+File: images/AverageBasicOperationsVAssumedCount.png Graphic file (type png)
+ <use images/AverageBasicOperationsVAssumedCount.png>
+Package pdftex.def Info: images/AverageBasicOperationsVAssumedCount.png used on
+ input line 387.
+(pdftex.def)             Requested size: 310.354pt x 219.61661pt.
+ [21 <./images/AverageBasicOperationsVAssumedCount.png>]
+<images/TotalOperationsVsHypothAmount.png, id=97, 2439.1125pt x 963.6pt>
+File: images/TotalOperationsVsHypothAmount.png Graphic file (type png)
+
+<use images/TotalOperationsVsHypothAmount.png>
+Package pdftex.def Info: images/TotalOperationsVsHypothAmount.png used on input
+ line 396.
+(pdftex.def)             Requested size: 365.85109pt x 144.53375pt.
+ [22 <./images/TotalOperationsVsHypothAmount.png>] (./main.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 3502 strings out of 493089
+ 52356 string characters out of 6134842
+ 163588 words of memory out of 5000000
+ 6946 multiletter control sequences out of 15000+600000
+ 11013 words of font info for 38 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 38i,6n,60p,1193b,1205s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
+></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
+usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
+r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
+local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/loc
+al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/
+texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/t
+exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/tex
+live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on main.pdf (23 pages, 537189 bytes).
+PDF statistics:
+ 141 PDF objects out of 1000 (max. 8388607)
+ 89 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+

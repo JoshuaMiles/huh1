@@ -1,0 +1,98 @@
+Get the information from Tanda
+https://my.tanda.co/api/v2/schedules?user_ids=167973,167978&from=2016-08-31&to=2016-09-30
+	Using JSON to get the data
+		Need to iterate through the schedule to get the data and find the particular id
+	No way to narrow down the user id, need to do that yourself
+		Narrowed down the users 
+			Now able to get the individual shifts with department_id
+	Time
+		The from and to times are in unix time, can parse with JS
+			What does Google take as the input time
+	Location
+		Ping the tanda API with the department id to know where they are working
+			Comes up with multiple locations, need to just get one solid location from the api 
+	To get the location
+		Given the user_id
+			How to just get the user_id
+		return roster_id given the user_id
+		https://my.tanda.co/api/v2/rosters/76997?user_id=167973
+			Get the times that they will be working from the roster given a certain date
+			https://my.tanda.co/api/v2/schedules?user_ids=167973&from=2016-08-31&to=2016-09-30
+			    Get the department id given the user id
+		        https://my.tanda.co/api/v2/departments/40357
+		        Use the user id to go through the schedules and if
+                			     they are in the list of staff return that the location id, go to that location and get the lat and long
+                			     https://my.tanda.co/api/v2/locations?department_ids=40354
+
+            Format of the promise chain
+
+            getSchedules().then(roster).then(getDepartmentId).then(getLocations)
+
+
+                start : Tue, 30 Aug 2016 07:00:00 GMT
+                finish: Tue, 30 Aug 2016 11:30:00 GMT
+                start: Wed, 31 Aug 2016 07:00:00 GMT
+                Finish: Wed, 31 Aug 2016 11:30:00 GMT
+
+
+
+
+		        Get the location
+		Get the location id by pinging the department id
+
+	Get the information into a temp JSON format to send to the twitter handling js
+
+		format { "date": "",  "Employees" : {
+			"userID" : , 
+			"from" : , 
+			"to" : ,  
+			"lat" :	,
+			"long" :  
+		}}
+
+
+Twitter
+	Tweet (pm?) the relevant information
+
+	Route the information to Twitter
+		format of the tweet
+			User userID you have work from from to to at lat long 
+
+
+
+Search twitter for the appropriate hashtag associated to the tweet made
+
+get the relevant information out of the tweet(regex?)
+	Time 
+	Day
+	Location
+
+
+route the information into Google Calendar 
+
+Google Calender Handling
+	https://support.google.com/a/answer/117596?hl=en
+	Get the auth when prompted
+	https://developers.google.com/google-apps/calendar/v3/reference/events/insert
+	https://www.npmjs.com/package/googleapis
+		Need an appropriate redirect uri
+			Used a fake one, Google said to use https://console.developers.google.com/apis/credentials/oauthclient/824085167222-ic0guu7367oh4gtvlq49a1sgqf6ejbhn.apps.googleusercontent.com?project=824085167222
+		https://github.com/google/google-api-nodejs-client/
+	Need to set the Auth scope to https://www.googleapis.com/auth/calendar
+	Can use the node package Google-apis: calendar.events.insert
+	What to do with the Callback URL
+	http://google.github.io/google-api-nodejs-client/12.4.0/index.html#generating-an-authentication-url
+		Says to use the GET /oauthcallback?code={authorizationCode} to get the authorisation code
+
+		gives you a file
+
+Going to use google maps instead
+
+
+Ask manager for permisson to post on twitter and tanda
+
+Be able to select who will get their hours from webpage
+
+Done with the Twitter auth go to express example in root
+
+Bitly URL shortener

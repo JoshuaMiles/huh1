@@ -1,0 +1,18 @@
+\contentsline {section}{\numberline {1}Description of Algorithm}{2}
+\contentsline {section}{\numberline {2}Theorectical Analysis of the Algorithm}{2}
+\contentsline {subsection}{\numberline {2.1}Identifying the Algorithm's Basic Operation}{2}
+\contentsline {subsection}{\numberline {2.2}Best-Case Efficiency}{2}
+\contentsline {subsection}{\numberline {2.3}Worst-Case Efficiency}{3}
+\contentsline {subsection}{\numberline {2.4}Average-Case Efficiency}{3}
+\contentsline {subsection}{\numberline {2.5}Aggregate Efficiency}{3}
+\contentsline {subsection}{\numberline {2.6}Order of Growth}{4}
+\contentsline {section}{\numberline {3}Methodology}{4}
+\contentsline {subsection}{\numberline {3.1}Tools}{5}
+\contentsline {subsection}{\numberline {3.2}Techniques}{5}
+\contentsline {section}{\numberline {4}Results}{6}
+\contentsline {subsection}{\numberline {4.1}Functional Testing}{6}
+\contentsline {subsection}{\numberline {4.2}Best and Worst-Case Number of Basic Opertations}{6}
+\contentsline {subsection}{\numberline {4.3}Aggregate Number of Basic Operations}{6}
+\contentsline {subsection}{\numberline {4.4}Average-Case Execution Time}{7}
+\contentsline {subsection}{\numberline {4.5}Aggregate Execution Time}{7}
+\contentsline {section}{Appendices}{9}

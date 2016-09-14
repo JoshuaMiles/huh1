@@ -1,0 +1,63 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
+Case mismatch error between cite keys kernighan1999practice and Kernighan1999practice
+---line 32 of file main.aux
+ : \citation{kernighan1999practice
+ :                                }
+I'm skipping whatever remains of this command
+The style file: IEEE.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: bib/tex.bib
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty journal in cormen2009linear
+
+Done.
+You've used 4 entries,
+            4087 wiz_defined-function locations,
+            843 strings with 7770 characters,
+and the built_in function-call counts, 1690 in all, are:
+= -- 106
+> -- 36
+< -- 3
++ -- 16
+- -- 8
+* -- 80
+:= -- 288
+add.period$ -- 8
+call.type$ -- 4
+change.case$ -- 2
+chr.to.int$ -- 6
+cite$ -- 5
+duplicate$ -- 134
+empty$ -- 183
+format.name$ -- 10
+if$ -- 374
+int.to.chr$ -- 0
+int.to.str$ -- 4
+missing$ -- 25
+newline$ -- 35
+num.names$ -- 4
+pop$ -- 77
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 129
+stack$ -- 0
+substring$ -- 8
+swap$ -- 70
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 4
+warning$ -- 1
+while$ -- 5
+width$ -- 5
+write$ -- 51
+(There was 1 error message)

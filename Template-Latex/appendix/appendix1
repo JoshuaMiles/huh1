@@ -1,0 +1,13 @@
+\documentclass{article}
+\usepackage[toc,page]{appendix}
+
+\begin{document}
+\tableofcontents
+
+\chapter{Regular Chapter}
+\begin{appendices}
+\chapter{Some Appendix}
+The contents...
+\end{appendices}
+
+\end{document}
