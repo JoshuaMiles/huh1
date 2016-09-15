@@ -8,6 +8,7 @@ var Promise = require('promise');
 var request = require('request');
 var accessToken = '326d8592e1e4a3c738268f5d9c91716fae2f697c5aba4f0c53977f6662ce7d08';
 var Twitter = require("twitter");
+var moment = require("moment");
 
 var client = new Twitter({
   consumer_key: 'yeSLIjDYWzzrVuahrH00ARvKL',
@@ -22,16 +23,16 @@ const to = '2016-09-30';
 
 var shiftObject = {
   employeeID: '',
+  name: '',
   employeeRosterID: '',
   start: '',
   finish: '',
   departmentID: '',
+  departmentName: '',
   latitude: '',
   longitude: ''
 };
 
-
-//TODO what to do with the response object
 // What does resolve do?
 router.get('/tanda-twitter', function (req, res) {
   var tweet = req.body.tweet;
@@ -56,19 +57,39 @@ router.get('/tanda-twitter', function (req, res) {
     var locationJSONObj = JSON.parse(tandaLocation.body);
     shiftObject.latitude = locationJSONObj.latitude;
     shiftObject.longitude = locationJSONObj.longitude;
-    return generateBitlyURL("http://maps.google.com/maps?z=12&t=m&q=loc:" + locationJSONObj.latitude + "+" + locationJSONObj.longitude );
+    var start = new Date(shiftObject.start * 1000).toISOStringWithoutFormatting();
+    var finish = new Date(shiftObject.finish * 1000).toISOStringWithoutFormatting();
+    start = timeTrim(start);
+    finish = timeTrim(finish);
+    // Use Google url shortener
+    var url = "https://www.google.com/calendar/render?action=TEMPLATE&text=Work+for+&dates=" + start + "/" + finish + "&,&location=" + locationJSONObj.latitude + "," + locationJSONObj.longitude + "&sf=true&output=xml";
+    console.log("https://www.google.com/calendar/render?action=TEMPLATE&text=Work+for+&dates=" + start + "/" + finish + "&,&location=" + locationJSONObj.latitude + "," + locationJSONObj.longitude + "&sf=true&output=xml");
+    return generateBitlyURL(url);
   }).then(function (bitlyData) {
     var bitlyJSONObj = JSON.parse(bitlyData.body);
-    // console.log(shiftObject);
-    console.log(bitlyJSONObj.data.url);
-    return generateBitlyURL(bitlyJSONObj.data.url);
-  }).then(function(bitlyURL){
-    return tweetPromise(bitlyURL);
+
+    return tweetPromise(bitlyJSONObj.data.url);
   }).catch(function (err) {
     console.error("There was an error when trying to complete your request: " + err);
   });
   req.flash('success_msg', 'You have now posted random twitter stuff');
 });
+
+function tandaUser() {
+  return new Promise(function (resolve, reject) {
+    request({
+      url: 'https://my.tanda.co/api/v2/users?',
+      auth: {
+        'bearer': accessToken
+      }
+    }, function (err, res) {
+      if (err) reject(err);
+      else resolve(res);
+    });
+  });
+}
+
+
 
 //Helper methods
 
@@ -87,30 +108,18 @@ function tandlerSchedules(from, to) {
 }
 
 function tweetPromise(url) {
-  return new Promise(function (reject, resolve) {
-    client.post('statuses/update', {status: "Employee Number " + employeeID + " you have work from " + shiftObject.start + " to " + shiftObject.finish + " at " + url + " @Tanda"}, function (error, tweet, response) {
-      if (error)
-        console.log("Error occured " + error);
-      // console.log(tweet);  // Tweet body.
-      // console.log("working " + tweet);
-    })
-  })
+  // return new Promise(function (reject, resolve) {
+
+    //   client.post('statuses/update', {status:  "Employee Number " + employeeID + " you have have a shift, click here to add it to your calendar " + url}, function (error, tweet, response) {
+    //     if (error)
+    //       console.log("Error occured on your twitter request: " + error);
+    //   });
+    // }
+    // )
 }
 
 
-function tandlerRoster(rosterID) {
-  return new Promise(function (resolve, reject) {
-    request({
-      url: 'https://my.tanda.co/api/v2/rosters/' + rosterID + 'user_ids=' + employeeID,
-      auth: {
-        'bearer': accessToken
-      }
-    }, function (err, res) {
-      if (err) reject(err);
-      else resolve(res);
-    });
-  });
-}
+
 
 function tandlerDepartment(scheduleID) {
   return new Promise(function (resolve, reject) {
@@ -145,7 +154,7 @@ function generateBitlyURL(currentURL) {
   return new Promise(function (resolve, reject) {
     request({
 
-      url: ' https://api-ssl.bitly.com/v3/shorten?access_token=e44d39b5d5a41a3e6b1dae6058685ff4c3908ce5&longUrl=' + currentURL,
+      url: 'https://api-ssl.bitly.com/v3/shorten?access_token=e44d39b5d5a41a3e6b1dae6058685ff4c3908ce5&longUrl=' + currentURL,
       auth: {
         'bearer': accessToken
       }
@@ -174,6 +183,35 @@ function getDepartmentID(rosObj, date, ID) {
       });
     }
   })
+}
+
+
+if (!Date.prototype.toISOStringWithoutFormatting) {
+  ( function () {
+
+    function pad(number) {
+      var r = String(number);
+      if (r.length === 1) {
+        r = '0' + r;
+      }
+      return r;
+    }
+
+    Date.prototype.toISOStringWithoutFormatting = function () {
+      return this.getUTCFullYear()
+          + pad(this.getUTCMonth() + 1)
+          + pad(this.getUTCDate())
+          + 'T' + pad(this.getUTCHours())
+          + pad(this.getUTCMinutes())
+          + pad(this.getUTCSeconds())
+          + String((this.getUTCMilliseconds() / 1000).toFixed(3)).slice(2, 5)
+          + 'Z';
+    };
+  }() );
+}
+
+function timeTrim(time) {
+  return time.replace('000', '');
 }
 
 module.exports = router;

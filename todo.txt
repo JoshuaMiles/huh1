@@ -96,3 +96,10 @@ Be able to select who will get their hours from webpage
 Done with the Twitter auth go to express example in root
 
 Bitly URL shortener
+
+
+Use the input from the index.handlebars into the API file
+change the URL generator to google, bitly changes the end of the url
+Try to upload to Docker
+Format the look of the employees (extra)
+Try to do google oauth

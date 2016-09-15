@@ -5,7 +5,6 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var request = require('request');
 
-
 var User = require('../server/db/models/user');
 
 // Register
