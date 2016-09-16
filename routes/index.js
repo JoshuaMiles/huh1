@@ -15,20 +15,15 @@ router.get('/', ensureAuthenticated, function(req, res){
 	tandlerUser().then(
 			function(tandaUsers){
 				var usersJSONObj = JSON.parse(tandaUsers.body);
-				console.log(usersJSONObj);
+				// console.log(usersJSONObj);
+				// If user is
+				// res.render('index', {employee:usersJSONObj});
 				res.render('index', {employee:usersJSONObj});
 			}
 	).catch(function (err) {
+		res.render('index');
 		console.error("There was an error when trying to complete your request: " + err);
 	});
-
-
-	var something = "no";
-	// Promise.new( nameFunctionThing )
-	// .then((data) => res.render('index', data))
-	// .catch(err => res.render('error'));
-	// Look for status and set timeout
-
 });
 
 function tandlerUser() {

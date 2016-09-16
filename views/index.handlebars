@@ -6,9 +6,10 @@
 <!--</form>-->
 
 <h1> Avaiable employees to send their hours to </h1>
+<!--<form method="get" action="/api/tanda-twitter">-->
 <form method="get" action="/api/tanda-twitter">
     {{#each employee}}
-        <input type="radio" name="{{employee_id}}" value="{{employee_id}}"> {{name}} <br>
+        <input type="checkbox" name="ids" value="{{id}}"><label for="{{id}}">{{name}}</label>  <br>
     {{/each}}
     <button type="submit" name='tweet'>Press this button to send the hours to employees!</button>
 </form>
