@@ -1,18 +1,12 @@
 <h2 class="page-header">Dashboard</h2>
 <p>Welcome to your dashboard</p>
-<!--<form method="get" action="/api/tanda-twitter">-->
-    <!--&lt;!&ndash;TODO if you have time, see if you can make this dynamic by checking the tanda api first and than populating the page with the data you receive&ndash;&gt;-->
-    <!--<button type="submit" name='tweet'>Press this button to send the hours to employees!</button>-->
-<!--</form>-->
-
-<h1> Avaiable employees to send their hours to </h1>
-<!--<form method="get" action="/api/tanda-twitter">-->
-<form method="get" action="/api/tanda-twitter">
-    {{#each employee}}
-        <input type="checkbox" name="ids" value="{{id}}"><label for="{{id}}">{{name}}</label>  <br>
-    {{/each}}
-    <button type="submit" name='tweet'>Press this button to send the hours to employees!</button>
+<form method="get" action="/employee/date-input">
+    <input type="date" name="date">
+    <button type="submit" class="btn btn-default" name="date-submit" >
+        Select the date for the rosters you want
+    </button>
 </form>
+
 
 <!--Post the data to the api tanda-twitter with the employee id and than for every employee who is sent over, make a tweet-->
 <!-- Include the link to the twitter and tanda oAuth page -->

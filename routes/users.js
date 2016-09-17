@@ -94,7 +94,6 @@ router.post('/login',
     });
 
 router.get('/logout', function (req, res) {
-  console.log("This helps");
   req.logout();
 
   req.flash('success_msg', 'You are logged out');
