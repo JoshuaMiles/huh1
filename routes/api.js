@@ -29,78 +29,86 @@ router.get('/tanda-twitter', (req, res) => {
   var employeeShiftArray = [];
   //TODO bootstrap date picker for post
   //TODO Checksum of the start
-  console.log(res.req.query.date);
-  var employeeIDArray = res.req.query.ids;
-  const from = '2016-08-31';
-  const to = '2016-09-30';
+  // console.log(res.req.query.date);
+  var employeeIDArray = [];
+  if (typeof res.req.query.ids === 'string') {
+    employeeIDArray.push(res.req.query.ids);
+  } else {
+    employeeIDArray = res.req.query.ids;
+  }
+  console.log(res.req.query.name);
+  var employeeArray = [];
 
   // console.log(typeof employeeIDArray );
 
+
   employeeIDArray.forEach((employeeID) => {
 
-        let shiftObject = {};
-        shiftObject.date = res.req.query.date;
-        shiftObject.employeeID = employeeID;
-        console.log(employeeID);
-        tandlerSchedules(from, to, shiftObject).then((scheduleObject) => {
-          var scheduleJSONObj = JSON.parse(scheduleObject.body);
+    let shiftObject = {};
+    shiftObject.date = res.req.query.date;
+    shiftObject.employeeID = employeeID;
 
-          start = new Date(scheduleJSONObj[0].start * 1000).toISOStringWithoutFormatting();
-          finish = new Date(scheduleJSONObj[0].finish * 1000).toISOStringWithoutFormatting();
+    tandlerSchedules(shiftObject).then((scheduleObject) => {
+      var scheduleJSONObj = JSON.parse(scheduleObject.body);
+      start = new Date(scheduleJSONObj[0].start * 1000).toISOStringWithoutFormatting();
+      finish = new Date(scheduleJSONObj[0].finish * 1000).toISOStringWithoutFormatting();
+      shiftObject.start = timeTrim(start);
+      shiftObject.finish = timeTrim(finish);
 
-          shiftObject.start = timeTrim(start);
-          shiftObject.finish = timeTrim(finish);
+      shiftObject.department_id = scheduleJSONObj[0].department_id;
 
-          shiftObject.department_id = scheduleJSONObj[0].department_id;
-          return tandlerDepartment(shiftObject);
+      return tandlerUser(shiftObject);
 
-        }).then((tandaDepartment) => {
-          var departmentJSONObj = JSON.parse(tandaDepartment.body);
+    }).then((userData)=> {
+      var userJSON = JSON.parse(userData.body);
+      shiftObject.name = userJSON.name;
+      return tandlerDepartment(shiftObject);
 
-          shiftObject.department_name = departmentJSONObj.name;
-          shiftObject.location_id = departmentJSONObj.location_id;
+    }).then((tandaDepartment) => {
+      var departmentJSONObj = JSON.parse(tandaDepartment.body);
 
-          return tandlerDepartment(shiftObject);
+      shiftObject.department_name = departmentJSONObj.name;
+      shiftObject.location_id = departmentJSONObj.location_id;
 
-        }).then(function (tandaDepartment) {
-          var departmentJSONObj = JSON.parse(tandaDepartment.body);
-          shiftObject.tandaLocation = departmentJSONObj.location_id;
-          return tandlerLocation(shiftObject);
-        }).then((tandaLocation) => {
-          var locationJSONObj = JSON.parse(tandaLocation.body);
-          shiftObject.latitude = locationJSONObj.latitude;
-          shiftObject.longitude = locationJSONObj.longitude;
+      return tandlerDepartment(shiftObject);
 
-          shiftObject.url = encodeURIComponent("https://www.google.com/calendar/render?action=TEMPLATE&text=Working+at+" + shiftObject.department_name +  "+&dates=" + shiftObject.start + "/" + shiftObject.finish + "&,&location=" + shiftObject.latitude + "," + shiftObject.longitude + "&sf=true&output=xml");
+    }).then(function (tandaDepartment) {
+      var departmentJSONObj = JSON.parse(tandaDepartment.body);
+      shiftObject.tandaLocation = departmentJSONObj.location_id;
+      return tandlerLocation(shiftObject);
+    }).then((tandaLocation) => {
+      var locationJSONObj = JSON.parse(tandaLocation.body);
+      shiftObject.latitude = locationJSONObj.latitude;
+      shiftObject.longitude = locationJSONObj.longitude;
 
-          return generateBitlyURL(shiftObject);
+      shiftObject.url = encodeURIComponent("https://www.google.com/calendar/render?action=TEMPLATE&text=Working+at+the+" + shiftObject.department_name + "+&dates=" + shiftObject.start + "/" + shiftObject.finish + "&,&location=" + shiftObject.latitude + "," + shiftObject.longitude + "&sf=true&output=xml");
 
-        }).then((bitlyData) => {
+      return generateBitlyURL(shiftObject);
 
-          var bitlyJSONObj = JSON.parse(bitlyData.body);
-          // console.log(bitlyJSONObj);
-          shiftObject.bitlyURL = bitlyJSONObj.data.url;
+    }).then((bitlyData) => {
 
-          return tweetPromise(shiftObject);
+      var bitlyJSONObj = JSON.parse(bitlyData.body);
+      shiftObject.bitlyURL = bitlyJSONObj.data.url;
+      employeeArray.push(shiftObject.name);
 
-        }).catch((err) => {
+      return tweetPromise(shiftObject);
 
-          console.error("There was an error when trying to complete your request: " + err);
-        });
-      }
-  );
-  req.flash('success_msg', 'You have now posted random twitter stuff');
+    }).catch((err) => {
+      console.error("There was an error when trying to complete your request: " + err);
+    });
+  });
+  res.render('successfulTweet', {employee:employeeIDArray});
 });
 
 //Helper methods
 
-function tandlerSchedules(from, to, shiftObject) {
+function tandlerSchedules(shiftObject) {
 
   return new Promise((resolve, reject) => {
 
     request({
 
-      url: 'https://my.tanda.co/api/v2/schedules?' + 'user_ids=' + shiftObject.employeeID + '&from=' + from + '&to=' + to,
+      url: 'https://my.tanda.co/api/v2/schedules?' + 'user_ids=' + shiftObject.employeeID + '&from=' + shiftObject.date + '&to=' + shiftObject.date,
       auth: {
         'bearer': accessToken
       }
@@ -126,21 +134,21 @@ function tandlerSchedules(from, to, shiftObject) {
 // }
 
 function tweetPromise(shiftObject) {
-  return new Promise((resolve, reject) => {
-        // console.log(shiftObject.bitlyURL);
-        client.post('statuses/update', {status: "Employee Number #" + shiftObject.employeeID + " you have have a shift " + shiftObject.bitlyURL + " #HereIsYourHours"}, function (error, tweet, response) {
-          if (error)
-          reject(error);
-        });
-      }
-  )
+  // return new Promise((resolve, reject) => {
+  //       client.post('statuses/update', {status: shiftObject.name + ", you have have a shift " + shiftObject.bitlyURL + " #HereIsYourHours #huh" + shiftObject.employeeID}, function (error, tweet, response) {
+  //         if (error)
+  //           reject(error);
+  //         resolve();
+  //       });
+  //     }
+  // )
 }
 
-function tandlerUser() {
+function tandlerUser(shiftObject) {
   return new Promise(function (resolve, reject) {
     request({
       //TODO for each user
-      url: 'https://my.tanda.co/api/v2/users',
+      url: 'https://my.tanda.co/api/v2/users/' + shiftObject.employeeID,
       auth: {
         'bearer': accessToken
       }
@@ -150,7 +158,6 @@ function tandlerUser() {
     });
   });
 }
-
 
 
 function tandlerDepartment(shiftObject) {
@@ -230,6 +237,7 @@ if (!Date.prototype.toISOStringWithoutFormatting) {
     }
 
     Date.prototype.toISOStringWithoutFormatting = function () {
+
       return this.getUTCFullYear()
           + pad(this.getUTCMonth() + 1)
           + pad(this.getUTCDate())
@@ -238,6 +246,7 @@ if (!Date.prototype.toISOStringWithoutFormatting) {
           + pad(this.getUTCSeconds())
           + String((this.getUTCMilliseconds() / 1000).toFixed(3)).slice(2, 5)
           + 'Z';
+
     };
   }() );
 }
