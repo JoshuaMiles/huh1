@@ -8,6 +8,6 @@ RUN npm install
 
  COPY . /usr/src/app
 
- EXPOSE 8080
+ EXPOSE 2020
 
  CMD [ "npm", "start" ]

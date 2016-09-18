@@ -1,0 +1,27 @@
+Mashup details
+    Manager logs in and has a tanda account attached (wasnt completed needed to just use one tanda account)
+    manager gets to choose which day they would like
+        Once the date is selected they than get a choice of employees that are set to be working on that day
+            Send the tweet with a confirmation message and the employee number of the employees they sent to
+
+
+Technical Description
+
+
+Problems
+Problems with accessing the Tanda api
+    What I ended up doing
+
+
+The async nature of javascript
+    Sacrafices and the things I learnt about promises
+
+Google Oauth
+    Original plan needed to be scrapped because I couldnt handle the oauth requests in a reasonable amount of time
+    Use of bitly and the link to add to google calendar as a substitute
+
+
+
+
+
+

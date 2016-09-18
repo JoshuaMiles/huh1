@@ -4,7 +4,7 @@
   "description": "A product that allows employers to automatically notify employees about their shifts and for the employees to have an easier way to be notified of their shift hours. The API will tweet the hours to the employee using information from the Tanda API, the employees part of the application will then take that data and put it into their Google Calendar.",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js ",
+    "start": "node server.js ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Josh m",
