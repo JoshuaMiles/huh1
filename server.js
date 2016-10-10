@@ -4,24 +4,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
 var expressValidator = require('express-validator');
-var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var mongo = require('mongodb');
-var mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost/loginapp');
-// Why set DB when it is not used in this file (maybe not throughout the entire project)
-// May be smart enough to realise that the mongoose instance from the ./routes/users.js knows
-// enough to connect the whole project to this instance of mongoose
-var db = mongoose.connection;
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var api = require('./routes/api');
 var employee = require('./routes/employee');
-// var tandatTwitter = require('.//tanda');
 
 // Init App
 var app = express();
@@ -39,19 +27,7 @@ app.use(cookieParser());
 // Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Express Session
-// How does it know to store data in the mongoose instance???
-
-app.use(session({
-  secret: 'secret',
-  saveUninitialized: true,
-  resave: true
-}));
-
-// Passport init
-app.use(passport.initialize());
-app.use(passport.session());
-
+// Passport ini
 // Express Validator
 app.use(expressValidator({
   errorFormatter: function (param, msg, value) {
@@ -71,25 +47,14 @@ app.use(expressValidator({
 }));
 
 // Connect Flash
-app.use(flash());
-
-// Global Vars
-app.use(function (req, res, next) {
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  res.locals.error = req.flash('error');
-  res.locals.user = req.user || null;
-  next();
-});
 
 
 app.use('/', routes);
-app.use('/users', users);
 app.use('/api', api);
 app.use('/employee', employee);
 
 // Set Port
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 2020));
 
 app.listen(app.get('port'), function () {
   console.log('Server started on port ' + app.get('port'));

@@ -1,40 +1,23 @@
-\contentsline {section}{\numberline {1}Introduction}{3}
-\contentsline {section}{\numberline {2}Hypothesis}{3}
-\contentsline {subsection}{\numberline {2.1}Average-Case Efficiency}{3}
-\contentsline {subsubsection}{\numberline {2.1.1}Basic Operations}{3}
-\contentsline {subsubsection}{\numberline {2.1.2}System Time}{3}
-\contentsline {subsection}{\numberline {2.2}Order of Growth}{4}
-\contentsline {section}{\numberline {3}Theoretical Analysis of the Algorithm}{4}
-\contentsline {subsection}{\numberline {3.1}Characteristics}{4}
-\contentsline {subsection}{\numberline {3.2}Time Complexities}{4}
-\contentsline {subsubsection}{\numberline {3.2.1}Basic Operations}{4}
-\contentsline {subsubsection}{\numberline {3.2.2}System Time}{4}
-\contentsline {subsection}{\numberline {3.3}Input}{5}
-\contentsline {section}{\numberline {4}Methodology}{5}
-\contentsline {subsection}{\numberline {4.1}The Code}{5}
-\contentsline {subsubsection}{\numberline {4.1.1}Producing the data}{5}
-\contentsline {subsubsection}{\numberline {4.1.2}The Algorithm}{6}
-\contentsline {subsubsection}{\numberline {4.1.3}Testing}{6}
-\contentsline {subsubsection}{\numberline {4.1.4}Collecting the Data}{6}
-\contentsline {subsubsection}{\numberline {4.1.5}Writing to CSV}{6}
-\contentsline {subsubsection}{\numberline {4.1.6}Finding the Average and Graphing}{6}
-\contentsline {subsection}{\numberline {4.2}Tools}{7}
-\contentsline {section}{\numberline {5}Results}{7}
-\contentsline {subsection}{\numberline {5.1}Average Time}{7}
-\contentsline {subsection}{\numberline {5.2}Average Number of Basic Operations}{8}
-\contentsline {subsection}{\numberline {5.3}Comparison}{8}
-\contentsline {section}{\numberline {6}Conclusion}{8}
-\contentsline {section}{Appendices}{10}
-\contentsline {section}{\numberline {A}The Insertion Sort Algorithm}{10}
-\contentsline {section}{\numberline {B}Coded Algorithm using Basic Operations}{11}
-\contentsline {section}{\numberline {C}Coded Algorithm using System Time}{12}
-\contentsline {section}{\numberline {D}Running the Algorithm while Timed}{13}
-\contentsline {section}{\numberline {E}Building the random Data}{14}
-\contentsline {section}{\numberline {F}Writing to CSV format}{15}
-\contentsline {section}{\numberline {G}Average Case Efficiency}{16}
-\contentsline {section}{\numberline {H}Predicted Count}{17}
-\contentsline {section}{\numberline {I}Average Basic Operations}{18}
-\contentsline {section}{\numberline {J}Average Time}{19}
-\contentsline {section}{\numberline {K}Average Time vs Size of Array}{20}
-\contentsline {section}{\numberline {L}Average Basic Operations Vs Predicted Count}{21}
-\contentsline {section}{\numberline {M}Total Basic Operations vs Size of Input}{22}
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}
+\contentsline {section}{\numberline {2} Use Cases }{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}User Case 1}{2}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Screenshot}{2}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}Twitter}{2}{subsubsection.2.1.2}
+\contentsline {subsubsection}{\numberline {2.1.3}Bitly}{3}{subsubsection.2.1.3}
+\contentsline {subsubsection}{\numberline {2.1.4}Tanda}{3}{subsubsection.2.1.4}
+\contentsline {subsubsection}{\numberline {2.1.5}Google Calendar}{3}{subsubsection.2.1.5}
+\contentsline {subsection}{\numberline {2.2}Use Case 2}{3}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Screenshot}{3}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Twitter}{4}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}Tanda}{4}{subsubsection.2.2.3}
+\contentsline {subsection}{\numberline {2.3}Use Case 3}{5}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}Screenshot}{5}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}Tanda}{5}{subsubsection.2.3.2}
+\contentsline {section}{\numberline {3}Technical Description}{5}{section.3}
+\contentsline {subsection}{\numberline {3.1}Technologies}{6}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Express}{6}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Handlebars}{6}{subsubsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.3}Request}{6}{subsubsection.3.1.3}
+\contentsline {subsubsection}{\numberline {3.1.4}Promises}{6}{subsubsection.3.1.4}
+\contentsline {section}{\numberline {4}Discussion of the use of Docker}{7}{section.4}
+\contentsline {section}{\numberline {5}Extensions}{7}{section.5}

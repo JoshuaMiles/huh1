@@ -4,6 +4,11 @@
 \usepackage{cite}
 \graphicspath{ {images/} }
 \usepackage{listings}
+\usepackage{tabu}
+\usepackage{array}
+\usepackage{hyperref}
+
+\usepackage{multirow}
 
 \usepackage{enumitem}
 
@@ -17,31 +22,32 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
 
 \center % Center everything on the page
- 
+
 %----------------------------------------------------------------------------------------
 %	HEADING SECTIONS
 %----------------------------------------------------------------------------------------
 
 \textsc{\LARGE Queensland University of Technology}\\[1.5cm] % Name of your university/college
 \textsc{\Large CAB432}\\[0.5cm] % Major heading such as course name
-\textsc{\large Assignment 1}\\[0.5cm] % Minor heading such as course title
+\textsc{\large Assignment 2 Proposal}\\[0.5cm] % Minor heading such as course title
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
 %----------------------------------------------------------------------------------------
 
 \HRule \\[0.4cm]
-{ \huge \bfseries Docker Mashup Project }\\[0.4cm] % Title of your document
+{ \huge \bfseries Scalable Traffic Counting Application }\\[0.4cm] % Title of your document
 \HRule \\[1.5cm]
- 
+
 %----------------------------------------------------------------------------------------
 %	AUTHOR SECTION
 %----------------------------------------------------------------------------------------
 
 \begin{minipage}{0.4\textwidth}
 \begin{flushleft} \large
-\emph{Author:}\\
-Joshua Miles[n7176244] % Your name
+	\emph{Author:}\\
+	Luke Busstra [] \\
+	Joshua Miles[n7176244] % Your name
 \end{flushleft}
 \end{minipage}
 ~
@@ -60,14 +66,14 @@ Joshua Miles[n7176244] % Your name
 %	DATE SECTION
 %----------------------------------------------------------------------------------------
 
-{\large 22$^{nd}$ April 2016}\\[2cm] % Date, change the \today to a set date if you want to be precise
+{\large 10$^{th}$ October 2016}\\[2cm] % Date, change the \today to a set date if you want to be precise
 
 %----------------------------------------------------------------------------------------
 %	LOGO SECTION
 %----------------------------------------------------------------------------------------
 
 \includegraphics[scale=0.10]{qut-logo-better}\\[2cm] % Include a department/university logo - this will require the graphicx package
- 
+
 %----------------------------------------------------------------------------------------
 
 % \vfill % Fill the rest of the page with whitespace
@@ -84,79 +90,135 @@ Joshua Miles[n7176244] % Your name
 
 
 \section{Introduction}
- mashup purpose and description (updated as needed from the proposal). This should include an introductory section, outlining the overall purpose and some idea of the sorts of usages supported, but described informally (this is probably 3 or 4 paragraphs). You should then have a description of the services used, with URL and one paragraph description of each. Don’t get to the deep API level here.
- 
- 
+
 
 \section{ Use Cases }
-Mashup use cases and services – this section should outline explicitly the use cases supported by the mashup (these must be illustrated using screen shots) and the service API calls used to support them. This is a semi-technical description, probably
-occupying about a page per use case.
 
-\subsection{Use Case 1}
+
+
+\subsection{User Case 1}
+
+\subsubsection{Screenshot}
+The screenshot shows tweets with the links and names showing evidence they worked where they said they did.
+
+\includegraphics[scale=.3]{images/tweet}\\[.1cm]
+
+\subsubsection{Twitter}
+Endpoint: \url{https://api.twitter.com/1.1/statuses/update.json?status=}
+The twitter API was used to provide a longterm solution to storing the employees hours for searching in the future,
+the specific employer made the tweet and can be simply search when combining the hash of the company with the employee id.
+
+\subsubsection{Bitly}
+Endpoint: \url{''https://api-ssl.bitly.com/v3/}
+The Bitly Link shortener was used to shorten the URL to fit into the typical size of a tweet, without it there was a
+that the crucial information wouldn't fit
+
+\subsubsection{Tanda}
+Endpoint: \url{https://my.tanda.co/api/v2/schedules?user_ids= the User ID}
+This will get the employee with the given id so that their schedule can be taken out inorder to post the information inside
+of the url
+
+\subsubsection{Google Calendar}
+Endpoint:
+This will get the employee with the given id so that their schedule can be taken out inorder to post the information inside
+of the url
+
+
 \subsection{Use Case 2}
+As an employer I want reward my employees in another way by providing evidence to them of working at my esablishment so
+that they are incentivised to a greater extent than just wage.
+
+
+
+\subsubsection{Screenshot}
+The screenshot shows that the employer can select dates where the employer has worked and thean the ability to send the email to employees.
+
+\includegraphics[scale=.3]{images/dateSelect}\\[.1cm]
+
+\subsubsection{Twitter}
+Endpoint: \url{https://api.twitter.com/1.1/statuses/update.json?status=}
+
+The twitter API was used to provide a longterm solution to storing the employees hours for searching in the future,
+the specific employer made the tweet and can be simply search when combining the hash of the company with the employee id.
+
+
+\subsubsection{Tanda}
+Endpoint: \url{https://my.tanda.co/api/v2/schedules?user_ids= the User ID}
+\url{https://my.tanda.co/api/v2/locations The location ID}
+\url{https://my.tanda.co/api/v2/departments/}
+
+In order to get the specific details about where the employee the following api calls need to be made, first the all of the
+ids are gotten and than for every employee id needs to get the schedules they are given. The location is then needed by getting the location id using the deparment API which needs the user ID.
+
 \subsection{Use Case 3}
 
+As a manager I want to be able to seelct who I send their previous hours to so that I can keep the privacy of the
+employees that do not wish their hours and places they have worked to be public.
 
-\subsection{Characteristics}
+\subsubsection{Screenshot}
+The screenshot shows that the manager can make a selection of who they wish to send the hours to using the checkbox.
+
+
+\includegraphics[scale=.3]{images/employeeSelect}\\[.1cm]
 
 
 
+\subsubsection{Tanda}
+Endpoint: \url{https://my.tanda.co/api/v2/schedules?user_ids= the User ID}
+\url{https://my.tanda.co/api/v2/shifts?from= Date from to= To}
 
-\subsection{Input}
+To get the employees and when they will be working the tanda shift API is used with the input of the manager to get the date they wish to select to send to the employees
 
 \section{Technical Description}
+Right now the application is relying on tanda input data which was working previously but now only has null inside all of the key
+identifying traits, this was not expected at all so if you get a demo account with tanda and get another key it may have pre-populated data.
 
-Technical description of the application. This is a deeper discussion of the architecture,
-the technology used on the client and server side, any issues encountered, and overall,
-how you implemented the project.
+\subsection{Technologies}
 
-\subsection{The Code}
+\subsubsection{Express}
+Express was used as a server to handle the requests and routes throughout the pages. It also was able to handle the view engine of the application which was set to handlebars.
 
+\subsubsection{Handlebars}
+ Handlebars what was used to post transfer information between the backend and the front end. It made the transfer relativly simple and easy for making a somewhat dynamically rendered application when used in conjuection with express.
+
+\subsubsection{Request}
+The request node package was used to make the API calls and requests, it is asynchrounous by nature so to use it
+effectivly one needed to treat it as such. This was not first apparent when initially using the package so the naieve
+solution was to treat it like it was doing the operations linearly. When the values I was trying to populate started
+coming back empty even though they were already called, this is when the issues became apparent.
+
+\subsubsection{Promises}
+To solve the issues faced using the the request package promises where ustilised to force something somewhat synchrounous.
+The solution forged was a chain of Promise.then statements which called took the API request, completed it and when it
+was resolved it sent a object (shift object) which collected the data throughout the process and the collection of results on the
+object was used to make the tweet.
+
+There was an opputunity to use the Promise.all function but was not implemented due to time restrictions however the problem that was to be solved with it was to simply collect the names of the users and than send them over to the next page
+after the employer selects the employees to send the information to. This was going to be done by getting a final array
+of promises containing calls to the user api in tanda getting the names using the employee ID given the selection made
+by the manager which would have been asyncronous. Promise.all would have resolved all of the promises and collected the
+names of the employees and posted to the handlebars document.
 
 
 \section{Discussion of the use of Docker}
-Discussion of the use of Docker, configuration choices. You may include excerpts from
-the Dockerfile and list this file as an appendix to the report
+http://13.73.202.109:2020/
 
-\section{Testing and limitations} 
-esting and limitations – test plan, results, compromises.
-
-
+The trouble the docker image made was the fact that you weren't able to just push a new change to the 'hub' if anything
+was wrong in combination the node version that was used was not consistant with the actual version being built so it was
+throwing errors. The code was refactored to meet the specifications of Argon because it was a well renowned node version but
+this ended up being quite troublesome as I kept getting errors from docker telling me I had an unsupported version.
 
 
 \section{Extensions}
 
-Allow oauth for calendar
-automated text message service
+In the future, this application would be better with a permanent type of universal id to make it easier identify which
+employees are who and not just rely on one workplaces employer identifier. In addition, not rely on twitter, google and
+bitly to store data needed to verify the employees experience would mean if one broke it would be able to relocate the
+API use to another service. On a minor note, being able to use the Promise.all function would improve the usablity on
+the managers side, as was noted previously.
 
-
-\subsubsection{Writing to CSV}
-
-
-\subsubsection{Finding the Average and Graphing}
-
-\begin{itemize}[noitemsep]
-
-\end{itemize}
-
-\subsection{Tools}
-
-
-\section{Results}
-
-\subsection{Average Time}
-
-\subsection{Average Number of Basic Operations}
-
-\subsection{Comparison}
-
-\section{Conclusion}
-
-\bibliography{bib/tex}
-%\bibliographystyle{IEEE}
 
 
 \newpage
 
-\end{appendices}
 \end{document}

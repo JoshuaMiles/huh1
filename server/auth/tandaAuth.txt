@@ -1,9 +1,0 @@
-Application ID:
-ab0bba0784bc21aaea8dc862c7531316d681954f07d8ce5398589fd46b23f396
-
-Application Secret:
-79d5af6eda31cb589fb1e67a827fb6176bd13990f0e516c5689066cc06020958
-
-Redirect URI
-
-tanda:local:redirect:uri

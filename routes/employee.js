@@ -4,12 +4,11 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
-const request = require('request');
+var request = require('request');
 
-var accessToken = '326d8592e1e4a3c738268f5d9c91716fae2f697c5aba4f0c53977f6662ce7d08';
+var accessToken = 'ACCESS_TOKEN';
 
-
-router.get('/date-input', ensureAuthenticated, function (req, res) {
+router.get('/date-input', function (req, res) {
   // Do the logic needed
   // Can pass in JSON objects into here
   // Payload is what you call in the Handlebars
@@ -20,18 +19,15 @@ router.get('/date-input', ensureAuthenticated, function (req, res) {
   tandlerUser().then(
       function (tandaUsers) {
         userArray = JSON.parse(tandaUsers.body);
-
-        // console.log(tandaUsers.body);
-        // var usersJSONObj = JSON.parse(tandaUsers.body);
-        // console.log(usersJSONObj);
-        // console.log(tandaUsers);
-
         return tandlerShifts(date);
       }
   ).then(
       function (rosters) {
         var rosterArray = JSON.parse(rosters.body);
         var employeeArray =[];
+        if(rosterArray.length === 0){
+          res.render('noEmployee');
+        }
         rosterArray.forEach((rosteredEmployee)=> {
           userArray.forEach((employee)=> {
             if(rosteredEmployee.user_id == employee.id){
@@ -86,13 +82,5 @@ function tandlerShifts(date) {
 }
 
 
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  } else {
-    //req.flash('error_msg','You are not logged in');
-    res.redirect('/users/login');
-  }
-}
 
 module.exports = router;

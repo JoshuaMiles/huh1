@@ -6,49 +6,39 @@ var router = express.Router();
 var passport = require('passport');
 var Promise = require('promise');
 var request = require('request');
-var accessToken = '326d8592e1e4a3c738268f5d9c91716fae2f697c5aba4f0c53977f6662ce7d08';
+var accessToken = 'TANDA_ACCESS_TOKEN';
 var Twitter = require("twitter");
 var moment = require("moment");
 
 var client = new Twitter({
-  consumer_key: 'yeSLIjDYWzzrVuahrH00ARvKL',
-  consumer_secret: 'T79sHvlB1loJfDPLgEkQiPuGZxeaD7GQRUZwWBZqGRQNGnts28',
-  access_token_key: '993514993-L42SpweTwbUojuUr5JzQDCWR93j5PWqW9W5vgABR',
-  access_token_secret: 'dpjOwzWZiVD8nJbrtdVEHEnmK1O5QmzJ1E5YF4MD0xFLM'
+  consumer_key: 'CONSUMER_KEY',
+  consumer_secret: 'CONSUMER_SECRET',
+  access_token_key: 'ACCESS_TOKEN_KEY',
+  access_token_secret: 'ACESS_TOKEN_SECRET'
 });
 
-// const employeeID = 167973;
+router.get('/tanda-twitter', function (req, res) {
 
-
-router.get('/tanda-twitter', (req, res) => {
-  var tweet = req.body.tweet;
-  var errors = req.validationErrors();
-  // Use the employee roster ID to get the roster and than the location using the department id
-  // all in all 3 level promise
-  //TODO put the data into the shift object
-  var employeeShiftArray = [];
-  //TODO bootstrap date picker for post
-  //TODO Checksum of the start
-  // console.log(res.req.query.date);
   var employeeIDArray = [];
   if (typeof res.req.query.ids === 'string') {
     employeeIDArray.push(res.req.query.ids);
   } else {
     employeeIDArray = res.req.query.ids;
   }
-  console.log(res.req.query.name);
   var employeeArray = [];
 
-  // console.log(typeof employeeIDArray );
+  if(typeof employeeIDArray == 'undefined'){
+    res.render('noEmployeesSelected',{message:"No Employees Where Selected"});
+    return;
+  }
 
+  employeeIDArray.forEach(function (employeeID) {
 
-  employeeIDArray.forEach((employeeID) => {
-
-    let shiftObject = {};
+    var shiftObject = {};
     shiftObject.date = res.req.query.date;
     shiftObject.employeeID = employeeID;
 
-    tandlerSchedules(shiftObject).then((scheduleObject) => {
+    tandlerSchedules(shiftObject).then(function (scheduleObject) {
       var scheduleJSONObj = JSON.parse(scheduleObject.body);
       start = new Date(scheduleJSONObj[0].start * 1000).toISOStringWithoutFormatting();
       finish = new Date(scheduleJSONObj[0].finish * 1000).toISOStringWithoutFormatting();
@@ -59,12 +49,12 @@ router.get('/tanda-twitter', (req, res) => {
 
       return tandlerUser(shiftObject);
 
-    }).then((userData)=> {
+    }).then(function (userData) {
       var userJSON = JSON.parse(userData.body);
       shiftObject.name = userJSON.name;
       return tandlerDepartment(shiftObject);
 
-    }).then((tandaDepartment) => {
+    }).then(function (tandaDepartment) {
       var departmentJSONObj = JSON.parse(tandaDepartment.body);
 
       shiftObject.department_name = departmentJSONObj.name;
@@ -76,16 +66,17 @@ router.get('/tanda-twitter', (req, res) => {
       var departmentJSONObj = JSON.parse(tandaDepartment.body);
       shiftObject.tandaLocation = departmentJSONObj.location_id;
       return tandlerLocation(shiftObject);
-    }).then((tandaLocation) => {
+    }).then(function (tandaLocation) {
+      console.log(tandaLocation.body);
       var locationJSONObj = JSON.parse(tandaLocation.body);
+
       shiftObject.latitude = locationJSONObj.latitude;
       shiftObject.longitude = locationJSONObj.longitude;
-
       shiftObject.url = encodeURIComponent("https://www.google.com/calendar/render?action=TEMPLATE&text=Working+at+the+" + shiftObject.department_name + "+&dates=" + shiftObject.start + "/" + shiftObject.finish + "&,&location=" + shiftObject.latitude + "," + shiftObject.longitude + "&sf=true&output=xml");
 
       return generateBitlyURL(shiftObject);
 
-    }).then((bitlyData) => {
+    }).then(function (bitlyData) {
 
       var bitlyJSONObj = JSON.parse(bitlyData.body);
       shiftObject.bitlyURL = bitlyJSONObj.data.url;
@@ -93,18 +84,18 @@ router.get('/tanda-twitter', (req, res) => {
 
       return tweetPromise(shiftObject);
 
-    }).catch((err) => {
+    }).catch(function (err) {
       console.error("There was an error when trying to complete your request: " + err);
     });
   });
-  res.render('successfulTweet', {employee:employeeIDArray});
+      res.render('successfulTweet', {employee: employeeIDArray});
 });
 
 //Helper methods
 
 function tandlerSchedules(shiftObject) {
 
-  return new Promise((resolve, reject) => {
+  return new Promise(function (resolve, reject) {
 
     request({
 
@@ -119,29 +110,17 @@ function tandlerSchedules(shiftObject) {
     });
   });
 }
-//
-// function googleAddress(shiftObject) {
-//   return new Promise((resolve, reject) => {
-//
-//     request({
-//       url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + shiftObject.latitude + "," + shiftObject.longitude,
-//     }, function (err, res) {
-//
-//       if (err) reject(err);
-//       else resolve(res);
-//     });
-//   });
-// }
+
 
 function tweetPromise(shiftObject) {
-  // return new Promise((resolve, reject) => {
-  //       client.post('statuses/update', {status: shiftObject.name + ", you have have a shift " + shiftObject.bitlyURL + " #HereIsYourHours #huh" + shiftObject.employeeID}, function (error, tweet, response) {
-  //         if (error)
-  //           reject(error);
-  //         resolve();
-  //       });
-  //     }
-  // )
+  return new Promise(function (resolve, reject) {
+        client.post('statuses/update', {status: shiftObject.name + ", you have have a shift " + shiftObject.bitlyURL + " #HereIsYourHours #huh" + shiftObject.employeeID}, function (error, tweet, response) {
+          if (error)
+            reject(error);
+          resolve();
+        });
+      }
+  )
 }
 
 function tandlerUser(shiftObject) {
@@ -161,7 +140,7 @@ function tandlerUser(shiftObject) {
 
 
 function tandlerDepartment(shiftObject) {
-  return new Promise((resolve, reject) => {
+  return new Promise(function (resolve, reject) {
     request({
       url: 'https://my.tanda.co/api/v2/departments/' + shiftObject.department_id,
       auth: {
@@ -175,14 +154,15 @@ function tandlerDepartment(shiftObject) {
 }
 
 function tandlerLocation(shiftObject) {
-  return new Promise((resolve, reject) => {
+  console.log(shiftObject.location_id);
+  return new Promise(function (resolve, reject) {
     request({
 
       url: 'https://my.tanda.co/api/v2/locations/' + shiftObject.location_id,
       auth: {
         'bearer': accessToken
       }
-    }, (err, res) => {
+    }, function (err, res) {
       if (err) reject(err);
       else resolve(res);
     });
@@ -190,14 +170,14 @@ function tandlerLocation(shiftObject) {
 }
 
 function generateBitlyURL(shiftObject) {
-  return new Promise((resolve, reject) => {
+  return new Promise(function (resolve, reject) {
     request({
 
       url: 'https://api-ssl.bitly.com/v3/shorten?access_token=e44d39b5d5a41a3e6b1dae6058685ff4c3908ce5&longUrl=' + shiftObject.url,
       auth: {
         'bearer': accessToken
       }
-    }, (err, res) => {
+    }, function (err, res) {
       if (err) reject(err);
       else resolve(res);
     });
@@ -212,9 +192,9 @@ function generateBitlyURL(shiftObject) {
  */
 
 function getDepartmentID(rosObj, date, ID) {
-  rosObj.schedules.map((innerSchedule) => {
+  rosObj.schedules.map(function (innerSchedule) {
     if (innerSchedule.date == date) {
-      innerSchedule.schedules.map((individualSchedules) => {
+      innerSchedule.schedules.map(function (individualSchedules) {
         if (individualSchedules.id == ID) {
 
           return individualSchedules.department_id;
@@ -225,6 +205,9 @@ function getDepartmentID(rosObj, date, ID) {
 }
 
 
+
+
+// When getting the data back for
 if (!Date.prototype.toISOStringWithoutFormatting) {
   ( function () {
 
@@ -246,11 +229,12 @@ if (!Date.prototype.toISOStringWithoutFormatting) {
           + pad(this.getUTCSeconds())
           + String((this.getUTCMilliseconds() / 1000).toFixed(3)).slice(2, 5)
           + 'Z';
-
     };
   }() );
 }
 
+
+// Trim the time because it had too many zeroes
 function timeTrim(time) {
   return time.replace('000', '');
 }
